@@ -3,8 +3,8 @@
 buildarch=4
 
 pkgname=gst-imx
-_commit=9b9b2d3b105f9ce7bc52a2f110bfcc9d90698633
-pkgver=0.9.8
+_commit=678a72d997f936a7fbd0ec7d6ebe93597f10524d
+pkgver=0.9.9
 pkgrel=2
 pkgdesc="GStreamer plugins for i.MX platforms"
 arch=('armv7h')
@@ -13,7 +13,7 @@ url="https://github.com/Freescale/gstreamer-imx"
 depends=('gst-plugins-base-libs' 'libfslvpuwrap' 'gpu-viv-bin-mx6q-fb')
 makedepends=('python2' 'linux-headers-imx6-fsl')
 source=("https://github.com/Freescale/gstreamer-imx/archive/${_commit}.tar.gz")
-md5sums=('f38c776e35e016370f1fff08a6c48c93')
+md5sums=('5c2d7e52918782a00b7e7cfd17d5001d')
 
 LDFLAGS+=' -L/opt/fsl/lib'
 CPPFLAGS+=' -I/opt/fsl/include'
@@ -26,7 +26,8 @@ build() {
   python2 waf configure --prefix=/usr \
     --with-package-name="GStreamer plugins for i.MX platforms" \
     --with-package-origin="https://github.com/archlinuxarm/PKGBUILDs/tree/master/alarm/gst-imx" \
-    --egl-platform=fb
+    --egl-platform=fb \
+    --kernel-headers=/usr/include
   
   python2 waf build $MAKEFLAGS
 }
